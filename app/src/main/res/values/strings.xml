@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ToRico</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Configurações</string>
+
+    <string name="salario_bruto">Salário Bruto</string>
+    <string name="salario_info">Informe o valor do salário bruto mensal</string>
+    <string name="horas_trabalhadas">Horas Trabalhadas</string>
+    <string name="horas_info">Informe a quantidade de horas trabalhadas por mês</string>
+    <string name="percentual_hora_extra">% Horas Extras</string>
+    <string name="extra_info">Informe a porcentagem da hora extra</string>
+
+</resources>

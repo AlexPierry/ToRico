@@ -1,0 +1,36 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="salario_bruto"
+        android:title="@string/salario_bruto"
+        android:summary="@string/salario_info"
+        android:defaultValue="0.00"
+        android:numeric="decimal"
+        android:selectAllOnFocus="true"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <EditTextPreference
+        android:key="horas_mensais"
+        android:title="@string/horas_trabalhadas"
+        android:summary="@string/horas_info"
+        android:numeric="integer"
+        android:defaultValue="0"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <EditTextPreference
+        android:key="hora_extra"
+        android:title="@string/percentual_hora_extra"
+        android:summary="@string/extra_info"
+        android:numeric="decimal"
+        android:defaultValue="0"
+        android:selectAllOnFocus="true"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+</PreferenceScreen>
