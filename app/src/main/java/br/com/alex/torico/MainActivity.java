@@ -2,6 +2,7 @@ package br.com.alex.torico;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,9 +26,12 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    // Pra não deixar o timer do serviço parar
+    PowerManager mgr;
+    PowerManager.WakeLock wakeLock;
+
     ToRicoService toRicoService;
 
     private Handler handler;
@@ -59,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mgr = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ToRico_WakeLock");
 
         btPause = (Button) findViewById(R.id.btPause);
         btStart = (Button) findViewById(R.id.btStart);
@@ -95,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             btStop.setEnabled(true);
             btPause.setEnabled(true);
             btStart.setEnabled(false);
+            wakeLock.acquire();
         }
     }
 
@@ -104,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             btStop.setEnabled(true);
             btPause.setEnabled(false);
             btStart.setEnabled(true);
+            wakeLock.release();
         }
     }
 
@@ -133,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, ToRicoService.class);
                         stopService(intent);
                         listInsertItem();
+                        wakeLock.release();
                     }
                 });
 
